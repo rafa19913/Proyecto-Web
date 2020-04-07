@@ -41,19 +41,18 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index2.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">VideoGames<sup></sup></div>
         </a>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index2.html">
+            <a class="nav-link" href="index.php">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -63,24 +62,84 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Interface
+            Venta
         </div>
-
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#submenuDulceria" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
+                <span>Dulcería</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="submenuDulceria" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
+                    <!--<h6 class="collapse-header">Custom Components:</h6>-->
+                    <a class="collapse-item" href="#">Registrar venta</a>
+                    <a class="collapse-item" href="#">Ver ventas</a>
                 </div>
             </div>
         </li>
 
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Sistema
+        </div>
+        <!-- Nav Item - Consolas -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#submenuConsolas" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Consolas</span>
+            </a>
+            <div id="submenuConsolas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <!--<h6 class="collapse-header">Custom Components:</h6>-->
+                    <a class="collapse-item" href="#">Listar</a>
+                    <a class="collapse-item" href="#">Instalar juego</a>
+                </div>
+            </div>
+        </li>
+        <!-- Nav Item - Juegos -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-gamepad"></i>
+                <span>Juegos</span></a>
+        </li>
+        <!-- Nav Item - Torneos -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-trophy"></i>
+                <span>Torneos</span></a>
+        </li>
+        <!-- Nav Item - Promociones -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-money-check"></i>
+                <span>Promociones</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Sistema
+        </div>
+        <!-- Nav Item - Usuarios -->
+        <li class="nav-item">
+            <a class="nav-link" href="users.php">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Usuarios</span></a>
+        </li>
+
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
+        </div>
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

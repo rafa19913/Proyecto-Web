@@ -8,6 +8,10 @@
 **[Diagrama de Base de Datos](https://app.sqldbm.com/MySQL/Edit/p103584/)**
 Script de la base de datos en `db/` (MySQL).
 
+Login:
+- user: admin
+- pass: admin
+
 ## TODO
 - Admin
 - Socio Gamer
