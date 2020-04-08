@@ -17,7 +17,7 @@ require 'include/header.php'; # contiene la navegacion
 # modals
 require 'include/modals/consolas/addConsola.php';
 require 'include/modals/consolas/showjuegosInstalados.php';
-require 'include/modals/confirmarEliminacion.php';
+require 'include/modals/confirmDeleteConsola.php';
 require 'include/modals/consolas/updateConsola.php';
 ?>
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -25,7 +25,9 @@ require 'include/modals/consolas/updateConsola.php';
     <script src="js/functions.js"></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
+
             loadListConsolas(); // carga lista de consolas
+
         }, false);
     </script>
 

@@ -3,7 +3,7 @@
 class Database{
     private $server = "localhost";
     private $user = "root";
-    private $pass = "adrianAmaya13P";
+    private $pass = "";
     private $db = "videogames_site";
 
     public function __construct(){ }

@@ -8,10 +8,11 @@ require '../db/Database.php';
 $db = new Database;
 $connection = $db->connect();
 
-$sql = "SELECT id, plataforma, numero, cobro, serial FROM consolas";
+$sqlC = "SELECT id, numero, serial FROM consolas";
 $result = mysqli_query($connection, $sql);
-
+$sqlP = "SELECT id, nombre, cobro, fecha_lanzamiento FROM plataformas WHERE id = ";
 while ($row = mysqli_fetch_row($result)) { // por cada fila itera
+
     $img_pla = "";
     $pl = strtoupper($row[1]);
     if($pl == "PLAY STATION 4" || $pl == "PLAY STATION 3" || $pl == "PLAY STATION 4 Pro"){
@@ -25,6 +26,8 @@ while ($row = mysqli_fetch_row($result)) { // por cada fila itera
     }else {
         $img_pla = "default.png";
     }
+
+    $data = $row[0]."||".$row[1]."||".$row[2]."||".$row[3]."||".$row[4];
     ?>
 
     <div class="col-xl-3 col-md-6 mb-4">
@@ -41,12 +44,13 @@ while ($row = mysqli_fetch_row($result)) { // por cada fila itera
             </ul>
             <div class="card-body" style="text-align: center">
                 <a href="#" class="card-link" data-toggle="modal" data-target="#verJuegosInstaladosModal">Juegos</a>
-                <a href="#" class="card-link" data-toggle="modal" data-target="#editarConsolaModal">Editar</a>
-                <a href="#" class="card-link" style="color: #ff253a" data-toggle="modal"
-                   data-target="#confirmarEliminacionModal" onclick="">Eliminar</a>
+                <a href="#" class="card-link" data-toggle="modal" data-target="#editarConsolaModal" onclick="updateConsola('<?php echo $data ?>')">Editar</a>
+                <a id="" href="#" data-toggle="modal" data-target="#confirmarEliminacionModal" class="card-link" style="color: #ff253a" onclick="deleteConsola('<?php echo $row[0] ?>')">Eliminar</a>
             </div>
         </div>
     </div>
+
+
     <?php
 } // termina el ciclo
 

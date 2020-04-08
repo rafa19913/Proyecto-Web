@@ -113,5 +113,36 @@ function loadListConsolas() {
  * Borrar consola
  */
 function deleteConsola(id) {
+    // cuando presione confirme en el modal include/modals/consola/confirmDeleteConsola.php
+    document.getElementById('eliminarBtn').onclick = () => {
 
+        cadena = "id=" + id;
+        $.ajax({
+            type: "POST",
+            url: "controllers/deleteConsola.php",
+            data: cadena,
+            success: function (r) {
+                loadListConsolas();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Consola eliminada correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al eliminar la consola'
+                });
+            }
+        });
+    }
+}
+
+
+/**
+ * Actualizar consola.
+ * @param data: Cadena de datos de la consola divididos por ||.
+ */
+function updateConsola(data){
+    dataConsola = data.split('||');
 }

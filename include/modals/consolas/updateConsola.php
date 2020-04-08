@@ -16,7 +16,7 @@
             </div>
             <div class="modal-body">
                 <label for="">Plataforma</label>
-                <input id="roleNewVisit" type="text" class="form-control" list="datalistOptionsRoles" placeholder="" />
+                <input id="plataformUpConsola" type="text" class="form-control" list="datalistOptionsRoles" placeholder="" />
                 <datalist id="datalistOptionsRoles">
                     <option value="Xbox One" />
                     <option value="Play Station 4" />
@@ -26,15 +26,15 @@
                     <option value="Xbox One X" />
                 </datalist>
                 <label for="">Número de inventario</label>
-                <input type="text" name="" id="lastNameAdd" class="form-control input-sm">
+                <input type="text" name="" id="numeroUpConsola" class="form-control input-sm">
                 <label for="">Cobro</label>
-                <input type="number" name="" id="emailAdd" class="form-control input-sm" min="1" placeholder="$ 00.00 /hora de juego">
+                <input type="number" name="" id="numeroUpConsola" class="form-control input-sm" min="1" placeholder="$ 00.00 /hora de juego">
                 <label for="">Serial</label>
-                <input type="text" name="" id="lastNameAdd" class="form-control input-sm">
+                <input type="text" name="" id="serialUpConsola" class="form-control input-sm">
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

@@ -20,5 +20,6 @@ Login:
 ## Dev
 - `controllers/` codigo php para instrucciones sql.
 - `include/` partes html para requerir desde las vistas; header, footer, modals.
-- `db/` 
+- `components/` partes html dinamicas en base a consultas sql.
+- `db/` codigo sql, clase y conexion a base de datos.
 - `uploads/` directorio para guardar las img de los usuarios, juegos.
