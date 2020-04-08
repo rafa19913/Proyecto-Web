@@ -18,7 +18,7 @@ Login:
 - Socio Gamer
 
 ## Dev
-- `controllers/`
-- `include/`
+- `controllers/` codigo php para instrucciones sql.
+- `include/` partes html para requerir desde las vistas; header, footer, modals.
 - `db/` 
-- `uploads/`
+- `uploads/` directorio para guardar las img de los usuarios, juegos.
