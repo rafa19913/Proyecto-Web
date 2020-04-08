@@ -28,8 +28,8 @@ CREATE TABLE `consolas` (
   `id` int(11) NOT NULL,
   `plataforma` varchar(45) NOT NULL,
   `numero` int(11) NOT NULL,
-  `cobro` float NOT NULL COMMENT 'Cobro por hora de juego.',
-  `serial` varchar(255) DEFAULT NULL
+  `serial` varchar(255) DEFAULT NULL,
+  `id_plataforma` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -103,12 +103,23 @@ CREATE TABLE `juegos` (
 --
 -- Estructura de tabla para la tabla `plataformas`
 --
-
 CREATE TABLE `plataformas` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `id_juego` int(11) NOT NULL
+  `nombre` varchar(45) CHARACTER SET utf8mb4 NOT NULL,
+  `cobro` float NOT NULL,
+  `fecha_lanzamiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Plataformas compatibles con el juego. NO son las consolas donde esta instalado. Al Instalar un Juego en una Consola se validará el cambo nombre(Plataformas) con el campo plataforma(Consolas).';
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `platdisponibles`
+--
+
+CREATE TABLE `platdisponibles` (
+  `id` int(11) NOT NULL,
+  `id_plataforma` int(11) NOT NULL,
+  `id_juego` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
