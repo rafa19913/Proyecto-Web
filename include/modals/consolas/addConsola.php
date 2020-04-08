@@ -1,5 +1,13 @@
 <?php
 # @uthor armando_rdz, at 08/04/20
+
+require 'db/Database.php';
+$db = new Database;
+$con = $db ->connect();
+
+$sql = "SELECT id, nombre FROM plataformas";
+$result = mysqli_query($con, $sql);
+
 ?>
 
 <!-- Modal para agregar nueva consola -->
@@ -16,21 +24,18 @@
       </div>
       <div class="modal-body">
           <label for="">Plataforma</label>
-          <input id="plataformaAdd" type="text" class="form-control" list="datalistOptionsRoles" placeholder="" />
-          <datalist id="datalistOptionsRoles">
-              <option value="Xbox 360" />
-              <option value="Xbox One" />
-              <option value="Xbox One X" />
-              <option value="Play Station 3" />
-              <option value="Play Station 4" />
-              <option value="Play Station 4 Pro" />
-              <option value="Nintendo Wii" />
-              <option value="Nintendo Switch" />
-          </datalist>
+          <div class="input-group mb-3">
+              <select class="custom-select" id="plataformaAdd">
+                  <option selected>Selecciona...</option>
+                  <?php
+                    while ($row = mysqli_fetch_row($result)){ ?>
+                        <option value="<?php echo $row[0] ?>"><?php echo $row[1] ?></option>
+                  <?php
+                    }  ?>
+              </select>
+          </div>
           <label for="">Número de inventario</label>
           <input type="text" name="" id="numeroAdd" class="form-control input-sm">
-          <label for="">Cobro</label>
-          <input type="number" name="" id="cobroAdd" class="form-control input-sm" min="1" placeholder="$ 00.00 /hora de juego">
           <label for="">Serial</label>
           <input type="text" name="" id="serialAdd" class="form-control input-sm">
       </div>

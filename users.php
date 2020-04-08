@@ -9,7 +9,6 @@ require 'include/header.php'; # contiene la navegacion
     </div>
     <div class="row">
 
-
     </div>
 
 <?php

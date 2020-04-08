@@ -47,30 +47,24 @@ function emptyInput(input) {
  * Validaciones para agregar nueva consola (admin)
  */
 document.getElementById('agregarConsolaBtn').onclick = () => {
-    plataforma = document.getElementById('plataformaAdd');
+    plataformaId = document.getElementById('plataformaAdd');
     numero = document.getElementById('numeroAdd');
-    cobro = document.getElementById('cobroAdd');
     serial = document.getElementById('serialAdd');
-    if(!emptyInput(cobro) || !emptyInput(plataforma) || !emptyInput(serial) || !emptyInput(numero))
-        return;
-    cobro = convertToNumber(cobro.value);
     //console.log(plataforma.value, numero.value, cobro, serial.value);
-    addConsola(plataforma.value, numero.value, cobro, serial.value);
+    addConsola(plataformaId.value, numero.value, serial.value);
 };
 
 /**
  * Se envian los datos a PHP (archivos en controllers/) quien hace las operaciones SQL
  */
-function addConsola(plataforma, numero, cobro, serial) {
-    plataforma = plataforma.trim();
-    numero = numero.trim();
+function addConsola(plataformaId, numero, serial) {
+    plataformaId = plataformaId.trim();
     serial.trim();
     serial = serial.toUpperCase();
 
     // crear cadena de envio de datos
-    cadena = "plataforma=" + plataforma +
+    cadena = "plataforma=" + plataformaId +
         "&numero=" + numero +
-        "&cobro=" + cobro +
         "&serial=" + serial;
 
     $.ajax({
@@ -145,4 +139,6 @@ function deleteConsola(id) {
  */
 function updateConsola(data){
     dataConsola = data.split('||');
+
+
 }

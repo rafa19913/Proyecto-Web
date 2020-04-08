@@ -8,9 +8,8 @@
 
     $pl = $_POST['plataforma'];
     $num = $_POST['numero'];
-    $cob = $_POST['cobro'];
     $se = $_POST['serial'];
 
-    $sql = "INSERT INTO consolas(plataforma, numero, cobro, serial) 
-            VALUES('$pl', '$num', '$cob', '$se')";
+    $sql = "INSERT INTO consolas(numero, serial, id_plataforma) 
+            VALUES('$num', '$se','$pl')";
     echo $result = mysqli_query($connection, $sql);
