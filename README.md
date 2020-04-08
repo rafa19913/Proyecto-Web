@@ -6,7 +6,7 @@
 [![Database diagram](db/db_diagram.PNG)]()
 
 ## Cambios en la BD
-__Script de la base de datos en `db/` (MySQL).__
+Script de la base de datos en `db/` (MySQL).
 - Se agreó la tabla `invitaciones`. 
 
 Login:
