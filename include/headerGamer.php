@@ -1,17 +1,18 @@
 <?php
-    session_start();
-    if(isset($_GET['logout'])){ # si se quiere cerrar sesion
-        session_unset();
-        session_destroy();
+session_start();
+if(isset($_GET['logout'])){ # si se quiere cerrar sesion
+    session_unset();
+    session_destroy();
+}
+if(!isset($_SESSION['id'])){ # si no hay una sesion
+    header('Location: login.php');
+}
+if(isset($_SESSION['id'])){
+    if($_SESSION['id'] == 1){ # si es un user gamer
+        header('Location: index.php');
     }
-    if(!isset($_SESSION['id'])){ # si no hay una sesion
-        header('Location: login.php');
-    }
-    if(isset($_SESSION['id'])){
-        if($_SESSION['id'] == 2){ # si es un user gamer
-            header('Location: indexGamer.php');
-        }
-    }
+}
+
 
 ?>
 
@@ -67,19 +68,19 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Venta
+            A jugar
         </div>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#submenuDulceria" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Dulcería</span>
+                <span>Torneos</span>
             </a>
             <div id="submenuDulceria" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <!--<h6 class="collapse-header">Custom Components:</h6>-->
-                    <a class="collapse-item" href="#">Registrar venta</a>
-                    <a class="collapse-item" href="#">Ver ventas</a>
+                    <a class="collapse-item" href="#">Registrarse</a>
+                    <a class="collapse-item" href="#">Mis torneos</a>
                 </div>
             </div>
         </li>
@@ -88,60 +89,27 @@
         <hr class="sidebar-divider">
         <!-- Heading -->
         <div class="sidebar-heading">
-            Jugar
+            Amigos
         </div>
-        <!-- Nav Item - Consolas -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#submenuConsolas" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Consolas</span>
-            </a>
-            <div id="submenuConsolas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <!--<h6 class="collapse-header">Custom Components:</h6>-->
-                    <a class="collapse-item" href="#">Listar</a>
-                    <a class="collapse-item" href="#">Instalar juego</a>
-                </div>
-            </div>
-        </li>
         <!-- Nav Item - Juegos -->
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-gamepad"></i>
-                <span>Juegos</span></a>
+                <span>Invitaciones</span></a>
         </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Heading -->
         <div class="sidebar-heading">
-            Atracción
+            Recolectar
         </div>
-        <!-- Nav Item - Torneos -->
+        <!-- Nav Item - Juegos -->
         <li class="nav-item">
             <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-trophy"></i>
-                <span>Torneos</span></a>
-        </li>
-        <!-- Nav Item - Promociones -->
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-money-check"></i>
-                <span>Promociones</span></a>
+                <i class="fas fa-fw fa-gamepad"></i>
+                <span>Mis monedas</span></a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Sistema
-        </div>
-        <!-- Nav Item - Usuarios -->
-        <li class="nav-item">
-            <a class="nav-link" href="users.php">
-                <i class="fas fa-fw fa-users"></i>
-                <span>Usuarios</span></a>
-        </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

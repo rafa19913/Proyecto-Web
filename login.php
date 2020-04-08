@@ -1,7 +1,10 @@
 <?php
     session_start();
     if(isset($_SESSION['email']) && isset($_SESSION['id'])){
-        header('Location: index.php');
+        if($_SESSION['id'] == 1)
+            header('Location: index.php');
+        if($_SESSION['id'] == 2)
+            header('Location: indexGamer.php');
     }
 
 ?>

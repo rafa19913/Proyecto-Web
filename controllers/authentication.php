@@ -31,10 +31,12 @@ if ($stmt = $connection->prepare('SELECT id, password FROM usuarios WHERE email 
             session_regenerate_id();
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['id'] = $id;
-
-            header('Location: ../index.php');
-            exit;
-
+            if($id == 1) {
+                header('Location: ../index.php');
+                exit;
+            }if($id == 2) {
+                header('Location: ../indexGamer.php');
+            }
         } else {
             header('Location: ../login.php');
             exit;
