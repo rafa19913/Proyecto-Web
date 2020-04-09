@@ -180,21 +180,52 @@ function updateConsola(){
         let serialUp = document.getElementById('serialUp');
         let idPl = document.getElementById('plataformaNameUpConsola');
 
+        /** ////////////////////////////////////////////////////////////////
+         * Validaciones
+         */
+        if(!emptyInput(inputId) || !emptyInput(numeroUp) || !emptyInput(serialUp) || !emptyInput(idPl)){
+            iziToast.error({
+                title: 'Error',
+                message: 'Existen campos incorrectos'
+            });
+            return;
+        }
+        if(idPl.value === "Selecciona..."){
+            iziToast.error({
+                title: 'Error',
+                message: 'Existen campos incorrectos'
+            });
+            return;
+        }
+
+        let num = convertToNumber(numeroUp.value.trim());
+        let platId = convertToNumber(idPl.value.trim());
+        let idCon = convertToNumber(inputId.value.trim());
+        if (num === -1 || platId === -1 || idCon === -1) {
+            return;
+        }if (isNaN(num) || isNaN(platId) || isNaN(idCon)){
+            iziToast.error({
+                title: 'Error',
+                message: 'Existen campos incorrectos'
+            });
+            return;
+        }
 
 
          /** ////////////////////////////////////////////////////////////////
          * Envio de datos
          */
-        let cadena = "id=" + inputId.value +
-            "&numero=" + numeroUp.value +
+        let cadena = "id=" + idCon +
+            "&numero=" + num +
             "&serial=" + serialUp.value.trim().toUpperCase() +
-            "&idplataforma=" + idPl.value;
+            "&idplataforma=" + platId;
         console.log(cadena);
         $.ajax({
             type: "POST",
-            url: "controllers/updateConsolas.php",
+            url: "controllers/updateConsola.php",
             data: cadena,
             success: function (r) {
+                console.log(r);
                 loadListConsolas();
                 iziToast.success({
                     title: 'Bien',
@@ -208,6 +239,13 @@ function updateConsola(){
                 });
             }
         });
+}
+
+/**
+ * Cargar y listar juegos de consola en modal
+ */
+function cargarJuegosConsola(id) {
+    document.getElementById('consolaIdJuegosList').value = id;
 
 }
 

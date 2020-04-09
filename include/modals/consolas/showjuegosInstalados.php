@@ -7,6 +7,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
+                    <input type="text" id="consolaIdJuegosList">
                     <h4 class="modal-title">Juegos instalados</h4>
                 </div>
                 <div class="modal-body">

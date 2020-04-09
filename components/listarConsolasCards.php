@@ -47,7 +47,7 @@ while ($row = mysqli_fetch_row($resultC)) { // por cada fila itera
                 <li class="list-group-item"><strong><? echo $row[2] ?></strong></li>
             </ul>
             <div class="card-body" style="text-align: center">
-                <a href="#" class="card-link" data-toggle="modal" data-target="#verJuegosInstaladosModal">Juegos</a>
+                <a href="#" class="card-link" data-toggle="modal" data-target="#verJuegosInstaladosModal" onclick="cargarJuegosConsola(<?php echo $row[0] ?>)">Juegos</a>
                 <a href="#" class="card-link" data-toggle="modal" data-target="#editarConsolaModal" onclick="cargaDataConsolaModalUp('<?php echo $data ?>')">Editar</a>
                 <a id="" href="#" data-toggle="modal" data-target="#confirmarEliminacionModal" class="card-link" style="color: #ff253a" onclick="deleteConsola('<?php echo $row[0] ?>')">Eliminar</a>
             </div>
