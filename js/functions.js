@@ -8,7 +8,7 @@ function convertToNumber(str){
         iziToast.error({
             title: 'Error',
             message: 'Existen campos incorrectos'
-        })
+        });
         console.log("ERROR: No se pudo convertir " + e + " a numero. [convertToNumber() js/functions.js]");
         return -1;
     }
@@ -23,50 +23,75 @@ function emptyInput(input) {
         iziToast.error({
             title: 'Error',
             message: 'Existen campos incorrectos'
-        })
+        });
         return false;
     }
-    if (input.value.length == 0) {
+    if (input.value.length === 0) {
         iziToast.error({
             title: 'Error',
             message: 'Existen campos incorrectos'
-        })
+        });
         return false;
     }
-    if(input.value == ''){
+    if(input.value === ''){
         iziToast.error({
             title: 'Error',
             message: 'Existen campos incorrectos'
-        })
+        });
         return false;
     }
     return true;
 }
 
 /**
- * Validaciones para agregar nueva consola (admin)
+ * Recolecta los inputs para agregar nueva consola (admin)
  */
 document.getElementById('agregarConsolaBtn').onclick = () => {
     plataformaId = document.getElementById('plataformaAdd');
     numero = document.getElementById('numeroAdd');
     serial = document.getElementById('serialAdd');
-    //console.log(plataforma.value, numero.value, cobro, serial.value);
-    addConsola(plataformaId.value, numero.value, serial.value);
+    if(!emptyInput(plataformaId) || !emptyInput(numero) || !emptyInput(serial) ){
+        iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+        });
+        return;
+    }
+    if(plataformaId.value === "Selecciona..."){
+        iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+        });
+        return;
+    }
+    num = convertToNumber(numero.value);
+    platId = convertToNumber(plataformaId.value);
+    if (num === -1 || plataformaId === -1){
+        return;
+    }if (isNaN(num)){
+        iziToast.error({
+            title: 'Error',
+            message: 'Existen campos incorrectos'
+        });
+        return;
+    }
+
+
+    addConsola(platId, num, serial.value);
 };
 
 /**
  * Se envian los datos a PHP (archivos en controllers/) quien hace las operaciones SQL
  */
 function addConsola(plataformaId, numero, serial) {
-    plataformaId = plataformaId.trim();
-    serial.trim();
+    serial = serial.trim();
     serial = serial.toUpperCase();
-
+    console.log("Plataforma ID = ", plataformaId);
     // crear cadena de envio de datos
     cadena = "plataforma=" + plataformaId +
         "&numero=" + numero +
         "&serial=" + serial;
-
+    //console.log(cadena);
     $.ajax({
         type: "POST",
         url: "controllers/addConsola.php",
@@ -132,13 +157,58 @@ function deleteConsola(id) {
     }
 }
 
+/**
+ * Carga los datos del listado consolas al modal "updateConsola".
+ * @param data
+ */
+function cargaDataConsolaModalUp(data) {
+    let dataConsola = data.split('||');
+    document.getElementById('idUpConsola').value = dataConsola[0]; // id de la consola
+    document.getElementById('plataformaNameUpConsola').value = dataConsola[3]; // llave foranea a plataforma
+    document.getElementById('numeroUp').value = dataConsola[1];
+    document.getElementById('serialUp').value = dataConsola[2];
+}
+
 
 /**
- * Actualizar consola.
- * @param data: Cadena de datos de la consola divididos por ||.
+ * Acutalizar consola
  */
-function updateConsola(data){
-    dataConsola = data.split('||');
+function updateConsola(){
 
+        let inputId = document.getElementById('idUpConsola');
+        let numeroUp = document.getElementById('numeroUp');
+        let serialUp = document.getElementById('serialUp');
+        let idPl = document.getElementById('plataformaNameUpConsola');
+
+
+
+         /** ////////////////////////////////////////////////////////////////
+         * Envio de datos
+         */
+        let cadena = "id=" + inputId.value +
+            "&numero=" + numeroUp.value +
+            "&serial=" + serialUp.value.trim().toUpperCase() +
+            "&idplataforma=" + idPl.value;
+        console.log(cadena);
+        $.ajax({
+            type: "POST",
+            url: "controllers/updateConsolas.php",
+            data: cadena,
+            success: function (r) {
+                loadListConsolas();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Consola actualizada correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al editar la consola'
+                });
+            }
+        });
 
 }
+
+

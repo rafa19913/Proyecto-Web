@@ -6,9 +6,10 @@
     $db = new Database;
     $connection = $db -> connect(); # funcion para conectarse a la BD
 
-    $pl = $_POST['plataforma'];
-    $num = $_POST['numero'];
+    $num = (int) $_POST['numero'];
     $se = $_POST['serial'];
+    $pl = (int) $_POST['plataforma'];
+
 
     $sql = "INSERT INTO consolas(numero, serial, id_plataforma) 
             VALUES('$num', '$se','$pl')";

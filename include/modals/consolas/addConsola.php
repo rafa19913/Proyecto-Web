@@ -35,7 +35,7 @@ $result = mysqli_query($con, $sql);
               </select>
           </div>
           <label for="">Número de inventario</label>
-          <input type="text" name="" id="numeroAdd" class="form-control input-sm">
+          <input type="number" name="" id="numeroAdd" class="form-control input-sm" min="1">
           <label for="">Serial</label>
           <input type="text" name="" id="serialAdd" class="form-control input-sm">
       </div>
