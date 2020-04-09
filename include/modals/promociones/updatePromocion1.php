@@ -19,15 +19,15 @@ $sql = "SELECT id, por_hora, por_compra, cantidad_objetivo FROM promocion_1";
                 </button>
             </div>
             <div class="modal-body">
-                <label for="">Nombre</label>
-                <input type="text" name="" id="nombre" class="form-control input-sm" disabled="true">
-                <label for="">Cobro</label>
-                <input type="text" name="" id="cobro" class="form-control input-sm">
-                <label for="">Fecha de Lanzamiento</label>
-                <input type="text" name="" id="fecha_lanzamiento" class="form-control input-sm" disabled="true">
+                <label for="">Monedas ganadas por hora de juego:</label>
+                <input type="text" name="" id="por_hora" class="form-control input-sm" >
+                <label for="">Monedas ganadas por compra:</label>
+                <input type="text" name="" id="por_compra" class="form-control input-sm">
+                <label for="">Cantidad Objetivo de monedas:</label>
+                <input type="text" name="" id="cantidad_objetivo" class="form-control input-sm" >
             </div>
             <div class="modal-footer justify-content-center">
-                <input type="number" value="" id="idPlataforma" hidden>
+                <input type="number" value="" id="id" hidden>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button id="updateTarifaBtn" type="button" class="btn btn-primary" data-dismiss="modal"
                         onclick="updateConsola()">Guardar</button>
