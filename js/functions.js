@@ -250,3 +250,77 @@ function cargarJuegosConsola(id) {
 }
 
 
+
+function loadListPlataformas() {
+     div = document.getElementById('listadoPlataformas');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarPlataformas.php', true);
+     xhr.send();
+
+ }
+
+function updateTarifa(){
+
+        let inputId = document.getElementById('idPlataforma');
+        let numeroUp = document.getElementById('nombre');
+        let serialUp = document.getElementById('cobro');
+        let idPl = document.getElementById('fecha_lanzamiento');
+
+
+
+         /** ////////////////////////////////////////////////////////////////
+         * Envio de datos
+         */
+        let cadena = "id=" + inputId.value +
+            "&nombre=" + numeroUp.value +
+            "&cobro=" + serialUp.value.trim().toUpperCase() +
+            "&fecha_lanzamiento=" + idPl.value;
+        console.log(cadena);
+        $.ajax({
+            type: "POST",
+            url: "controllers/updateTarifa.php",
+            data: cadena,
+            success: function (r) {
+                loadListConsolas();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Consola actualizada correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al editar la consola'
+                });
+            }
+        });
+
+}
+
+function cargaDataTarifaModalUp(data) {
+    let dataConsola = data.split('||');
+    document.getElementById('idPlataforma').value = dataConsola[0]; // id de la consola
+    document.getElementById('fecha_lanzamiento').value = dataConsola[3]; // llave foranea a plataforma
+    document.getElementById('nombre').value = dataConsola[1];
+    document.getElementById('cobro').value = dataConsola[2];
+}
+
+
+function loadListPromocion1() {
+     console.log("alert1");
+    //PROMOCION 1
+     div = document.getElementById('listadoPromocion1');
+     var xhr = new XMLHttpRequest();
+
+     xhr.onload = function () {
+         div.innerHTML = this.response;
+     };
+
+     xhr.open('GET', 'components/listarPromociones.php', true);
+     xhr.send();     
+}
