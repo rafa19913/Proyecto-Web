@@ -108,7 +108,7 @@
         </li>
         <!-- Nav Item - Juegos -->
         <li class="nav-item">
-            <a class="nav-link" href="juegos.php">
+            <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-gamepad"></i>
                 <span>Juegos</span></a>
         </li>
@@ -125,11 +125,25 @@
                 <i class="fas fa-fw fa-trophy"></i>
                 <span>Torneos</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"  data-toggle="collapse" data-target="#submenuTarifas" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-trophy"></i>
+                <span>Tarifas</span></a>
+                <div id="submenuTarifas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <!--<h6 class="collapse-header">Custom Components:</h6>-->
+                    <a class="collapse-item" href="promocion1.php">Accesorios </a>
+                    <a class="collapse-item" href="tarifasConsolas.php">Consolas</a>
+                </div>
+            </div>
+        </li>
         <!-- Nav Item - Promociones -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="promociones.php" >
                 <i class="fas fa-fw fa-money-check"></i>
                 <span>Promociones</span></a>
+                <div id="submenuPromociones" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            </div>
         </li>
 
         <!-- Divider -->
