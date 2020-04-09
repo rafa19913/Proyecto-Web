@@ -5,7 +5,7 @@
     $db = new Database;
     $con = $db ->connect();
 
-    $id = $_GET['id'];
+    $id = $_POST['id'];
     $numero = $_GET['numero'];
     $serial = $_GET['serial'];
     $idpl = $_GET['idplataforma'];

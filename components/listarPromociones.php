@@ -37,7 +37,7 @@ while ($row = mysqli_fetch_row($resultC)) { // por cada fila itera
             </ul>
             <div class="card-body" style="text-align: center">
                 <!--<a href="#" class="card-link" data-toggle="modal" data-target="#verJuegosInstaladosModal">Juegos</a>-->
-                <a href="#" class="card-link" data-toggle="modal" data-target="#editarPromocionModal" onclick="updateConsola('<?php echo $data ?>')">Editar</a>
+                <a href="#" class="card-link" data-toggle="modal" data-target="#editarPromocionModal" onclick="cargaDataPromocionModal1Up('<?php echo $data ?>')">Editar</a>
                 <!--<a id="" href="#" data-toggle="modal" data-target="#confirmarEliminacionModal" class="card-link" style="color: #ff253a" onclick="deleteConsola('<?php echo $row[0] ?>')">Eliminar</a>-->
             </div>
         </div>
@@ -78,7 +78,7 @@ while ($row = mysqli_fetch_row($resultC2)) { // por cada fila itera
             </ul>
             <div class="card-body" style="text-align: center">
                 <!--<a href="#" class="card-link" data-toggle="modal" data-target="#verJuegosInstaladosModal">Juegos</a>-->
-                <a href="#" class="card-link" data-toggle="modal" data-target="#editarConsolaModal" onclick="updateConsola('<?php echo $data ?>')">Editar</a>
+                <a href="#" class="card-link" data-toggle="modal" data-target="#editarPromocionModal2" onclick="cargaDataPromocionModal2Up('<?php echo $data ?>')">Editar</a>
                 <!--<a id="" href="#" data-toggle="modal" data-target="#confirmarEliminacionModal" class="card-link" style="color: #ff253a" onclick="deleteConsola('<?php echo $row[0] ?>')">Eliminar</a>-->
             </div>
         </div>

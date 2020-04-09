@@ -1,7 +1,7 @@
 <?php
 # @uthor armando_rdz, at 08/04/20
 
-    require 'db/Database.php';
+    require '../db/Database.php';
     $db = new Database;
     $con = $db ->connect();
 

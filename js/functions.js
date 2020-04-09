@@ -233,8 +233,6 @@ function updateTarifa(){
         let serialUp = document.getElementById('cobro');
         let idPl = document.getElementById('fecha_lanzamiento');
 
-
-
          /** ////////////////////////////////////////////////////////////////
          * Envio de datos
          */
@@ -286,3 +284,94 @@ function loadListPromocion1() {
      xhr.open('GET', 'components/listarPromociones.php', true);
      xhr.send();     
 }
+
+
+function cargaDataPromocionModal1Up(data) {
+    let dataConsola = data.split('||');
+    document.getElementById('id').value = dataConsola[0]; // id de la consola
+    document.getElementById('cantidad_objetivo').value = dataConsola[3]; // llave foranea a plataforma
+    document.getElementById('por_hora').value = dataConsola[1];
+    document.getElementById('por_compra').value = dataConsola[2];
+}
+
+
+function updatePromocion1(){
+
+        let inputId = document.getElementById('id');
+        let numeroUp = document.getElementById('por_hora');
+        let serialUp = document.getElementById('por_compra');
+        let idPl = document.getElementById('cantidad_objetivo');
+
+         /** ////////////////////////////////////////////////////////////////
+         * Envio de datos
+         */
+        let cadena = "id=" + inputId.value +
+            "&por_hora=" + numeroUp.value +
+            "&por_compra=" + serialUp.value.trim().toUpperCase() +
+            "&cantidad_objetivo=" + idPl.value;
+        console.log(cadena);
+        $.ajax({
+            type: "POST",
+            url: "controllers/updatePromocion.php",
+            data: cadena,
+            success: function (r) {
+                loadListConsolas();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Consola actualizada correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al editar la consola'
+                });
+            }
+        });
+
+}
+
+function updatePromocion2(){
+
+        let inputId = document.getElementById('id');
+        let numeroUp = document.getElementById('invitados');
+        let serialUp = document.getElementById('monedas');
+        //let idPl = document.getElementById('cantidad_objetivo');
+
+         /** ////////////////////////////////////////////////////////////////
+         * Envio de datos
+         */
+        let cadena = "id=" + inputId.value +
+            "&por_hora=" + numeroUp.value +
+            "&por_compra=" + serialUp.value.trim().toUpperCase() +
+            "&cantidad_objetivo=" + idPl.value;
+        console.log(cadena);
+        $.ajax({
+            type: "POST",
+            url: "controllers/updatePromocion.php",
+            data: cadena,
+            success: function (r) {
+                loadListConsolas();
+                iziToast.success({
+                    title: 'Bien',
+                    message: 'Consola actualizada correctamente'
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'Hubo un problema al editar la consola'
+                });
+            }
+        });
+
+}
+
+function cargaDataPromocionModal2Up(data) {
+    let dataConsola = data.split('||');
+    document.getElementById('id').value = dataConsola[0]; // id de la consola
+    //document.getElementById('cantidad_objetivo').value = dataConsola[3]; // llave foranea a plataforma
+    document.getElementById('invitados').value = dataConsola[1];
+    document.getElementById('monedas').value = dataConsola[2];
+}
+

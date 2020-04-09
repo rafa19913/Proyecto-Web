@@ -17,6 +17,8 @@ require 'include/header.php'; # contiene la navegacion
 <?php
 
 require 'include/modals/promociones/updatePromocion1.php';
+require 'include/modals/promociones/updatePromocion2.php';
+
 ?>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/izitoast/iziToast.min.js" type="text/javascript"></script>
