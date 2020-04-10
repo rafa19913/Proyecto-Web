@@ -23,3 +23,20 @@ Login:
 - `components/` partes html dinamicas en base a consultas sql.
 - `db/` codigo sql, clase y conexion a base de datos.
 - `uploads/` directorio para guardar las img de los usuarios, juegos.
+
+## Edwin
+- Dulceria(admin)
+- Historial de rentas y monedas(gamer)
+## Armando -
+- Consolas(admin) 
+- Invitaciones(gamer)
+## Amaya
+- Juegos(admin)
+- Mis Torneos(gamer)
+## Erick
+- Promociones(admin)
+- Registro a torneo(gamer)
+## Rafa
+- Usuarios(admin)
+- Torneos(gamer)
+- Registro de cuenta(gamer)
