@@ -16,8 +16,8 @@ while ($row = mysqli_fetch_row($resultC)) { // por cada fila itera
     $sqlP = "SELECT id, nombre, cobro, fecha_lanzamiento FROM plataformas WHERE id = '$row[3]'";
     $resultP = mysqli_query($connection, $sqlP);
     $resultP = mysqli_fetch_row($resultP);
-
     $img_pla = "";
+    
     $pl = strtoupper($resultP[1]);
     if($pl == "PLAY STATION 4" || $pl == "PLAY STATION 3" || $pl == "PLAY STATION 4 Pro"){
         $img_pla = "play_station_gray.png";
