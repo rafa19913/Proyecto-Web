@@ -16,7 +16,6 @@ require 'include/header.php'; # contiene la navegacion
 <?php
 # modals
 #require 'include/modals/consolas/addConsola.php';
-#require 'include/modals/consolas/showjuegosInstalados.php';
 #require 'include/modals/confirmDeleteConsola.php';
 require 'include/modals/tarifas/updateTarifaConsola.php';
 ?>

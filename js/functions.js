@@ -243,12 +243,133 @@ function updateConsola(){
 
 /**
  * Cargar y listar juegos de consola en modal
+ * @param id Recibe consulta SQL en base a este parametro.
  */
 function cargarJuegosConsola(id) {
-    document.getElementById('consolaIdJuegosList').value = id;
+    id = id.trim();
+    //console.log(id);
+    let cadena = "id=" + id;
+    $.ajax({
+        type: "POST",
+        url: "components/listarJuegosConsola.php",
+        data: cadena,
+        success: function (res) { /********* Se recibe JSON con consulta *********/
+            var divTable = document.getElementById('divContentTable');
+            divTable.innerText = "";
+            var data = JSON.parse(res); // convertir a JSON
+            console.log(data);
+            if(data[0]["id"] === null || data[0]["id"] === undefined || data[0]["id"] === ""){
+                $('#advertenciaConsolaSinJuegos').modal('show');
+                console.log("War: Esta consola no tiene juegos instalados");
+            }else {
+                /**
+                 *  Creacion de la tabla
+                 *   - ID
+                 *   - titulo
+                 *   - clasificacion
+                 *   - fecha lanzamiento
+                 *   - PATH de la imagen
+                 *   - fecha (tabla instalacion)
+                 * @type {HTMLTableElement}
+                 */
+                var table = document.createElement('table');
+                table.classList.add('table');
+                var thead = document.createElement('thead');
+                table.append(thead);
+                var trH = document.createElement('tr');
+                let thFila = document.createElement('th');
+                thFila.scope = "col";
+                thFila.innerText = "#";
+                trH.append(thFila);
+                let thTitulo = document.createElement('th');
+                thTitulo.scope = "col";
+                thTitulo.innerText = "Título";
+                trH.append(thTitulo);
+                let thIns = document.createElement('th');
+                thIns.scope = "col";
+                thIns.innerText = "Instalación";
+                trH.append(thIns);
+                let thAcciones = document.createElement('th');
+                thAcciones.scope = "col";
+                thAcciones.innerText = "Acciones";
+                trH.append(thAcciones);
+                thead.append(trH);
+                table.append(thead);
+                var tbody = document.createElement('tbody');
+
+                let i = 1;
+                for (let game in data) {
+                    let tr = document.createElement('tr');
+                    let tdFila = document.createElement('td');
+                    tdFila.innerText = i;
+                    tr.append(tdFila);
+                    let tdTitulo = document.createElement('td');
+                    tdTitulo.innerText = data[game]["titulo"];
+                    tr.append(tdTitulo);
+                    let tdInstalacion = document.createElement('td');
+                    tdInstalacion.innerText = data[game]["instalacion"];
+                    tr.append(tdInstalacion);
+                    let tdAcciones = document.createElement('td');
+                    let btnDesinstalar = document.createElement('button');
+                    btnDesinstalar.classList.add('btn');
+                    btnDesinstalar.classList.add('btn-danger');
+                    btnDesinstalar.classList.add('glyphicon');
+                    btnDesinstalar.classList.add('glyphicon-remove');
+                    btnDesinstalar.innerText = "Desinstalar";
+                    tdAcciones.append(btnDesinstalar);
+                    tr.append(tdAcciones);
+                    tbody.append(tr);
+                    i++;
+
+                    btnDesinstalar.onclick = () => {
+                        desinstalarJuego(id, data[game]["id"]);
+                        cargarJuegosConsola(id);
+                    };
+                }
+                table.append(tbody);
+                divTable.append(table);
+
+                // muestra el modal con la tabla
+                $('#verJuegosInstaladosModal').modal('show');
+            }
+        },
+        error(){
+            console.log("ERROR: al cargar lista de juegos.");
+        }
+    });
+
 
 }
 
+
+/**
+ *
+ * @param idConsola
+ * @param idJuego
+ */
+function desinstalarJuego(idConsola, idJuego) {
+    cadena = "idconsola=" + idConsola +
+             "&idjuego=" + idJuego;
+
+    $.ajax({
+        type: "POST",
+        url: "controllers/desinstalarJuegoConsola.php",
+        data: cadena,
+        success: function (r) {
+            console.log(r);
+            iziToast.success({
+                title: 'Bien',
+                message: 'El juego se instaló correctamente'
+            });
+        },
+        error: function () {
+            iziToast.error({
+                title: 'Error',
+                message: 'Hubo en el servidor al asociar juego'
+            });
+        }
+    });
+}
 
 
 function loadListPlataformas() {

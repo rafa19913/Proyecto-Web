@@ -16,9 +16,10 @@ require 'include/header.php'; # contiene la navegacion
 <?php
 # modals
 require 'include/modals/consolas/addConsola.php';
-require 'include/modals/consolas/showjuegosInstalados.php';
 require 'include/modals/confirmDeleteConsola.php';
 require 'include/modals/consolas/updateConsola.php';
+require 'include/modals/consolas/listJuegosConsola.php';
+require 'include/modals/consolas/advertenciaSinJuegos.php';
 ?>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/izitoast/iziToast.min.js" type="text/javascript"></script>

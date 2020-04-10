@@ -1,0 +1,1 @@
+<?php    # @uthor armando_rdz, at 10/04/20    require '../db/Database.php';    $db = new Database();    $con = $db -> connect();    $idCon = $_POST["idconsola"];    $idJu = $_POST["idjuego"];    $sql = "DELETE FROM instalaciones WHERE id_consola = '$idCon' AND id_juego = '$idJu'";    echo $result = mysqli_query($con, $sql);    
