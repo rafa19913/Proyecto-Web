@@ -21,6 +21,7 @@ $sql = "SELECT id, nombre, cobro, fecha_lanzamiento FROM plataformas";
             <div class="modal-body">
                 <label for="">Nombre</label>
                 <input type="text" name="" id="nombre" class="form-control input-sm" disabled="true">
+
                 <label for="">Cobro</label>
                 <input type="text" name="" id="cobro" class="form-control input-sm">
                 <label for="">Fecha de Lanzamiento</label>
@@ -30,7 +31,7 @@ $sql = "SELECT id, nombre, cobro, fecha_lanzamiento FROM plataformas";
                 <input type="number" value="" id="idPlataforma" hidden>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button id="updateTarifaBtn" type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="updateConsola()">Guardar</button>
+                        onclick="updateTarifa()">Guardar</button>
             </div>
         </div>
     </div>

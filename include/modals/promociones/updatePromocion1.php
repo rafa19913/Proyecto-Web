@@ -30,7 +30,7 @@ $sql = "SELECT id, por_hora, por_compra, cantidad_objetivo FROM promocion_1";
                 <input type="number" value="" id="id" hidden>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button id="updateTarifaBtn" type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="updateConsola()">Guardar</button>
+                        onclick="updatePromocion1()">Guardar</button>
             </div>
         </div>
     </div>

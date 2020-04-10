@@ -21,7 +21,7 @@ $result = mysqli_query($con, $sql);
             <div class="modal-body">
                 <label for="">Plataforma</label>
                 <div class="input-group mb-3">
-                    <select class="custom-select" id="plataformaNameUpConsola">
+                    <select class="custom-select" id="plataformaNameUpConsola" disabled>
                         <option selected>Selecciona...</option>
                         <?php
                         while ($row = mysqli_fetch_row($result)){ ?>
