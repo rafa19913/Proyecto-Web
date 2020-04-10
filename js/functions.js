@@ -256,6 +256,7 @@ function loadListPlataformas() {
 
  }
 
+
 function updateTarifa(){
 
         let inputId = document.getElementById('idPlataforma');
@@ -266,17 +267,18 @@ function updateTarifa(){
          /** ////////////////////////////////////////////////////////////////
          * Envio de datos
          */
-        let cadena = "id=" + inputId.value +
+         
+        let cadena = "idPlataforma=" + inputId.value +
             "&nombre=" + numeroUp.value +
             "&cobro=" + serialUp.value.trim().toUpperCase() +
             "&fecha_lanzamiento=" + idPl.value;
-        console.log(cadena);
+        //console.log(cadena);
         $.ajax({
             type: "POST",
             url: "controllers/updateTarifa.php",
             data: cadena,
             success: function (r) {
-                loadListConsolas();
+                loadListPlataformas();
                 iziToast.success({
                     title: 'Bien',
                     message: 'Consola actualizada correctamente'
@@ -302,7 +304,7 @@ function cargaDataTarifaModalUp(data) {
 
 
 function loadListPromocion1() {
-     console.log("alert1");
+     //console.log("alert1");
     //PROMOCION 1
      div = document.getElementById('listadoPromocion1');
      var xhr = new XMLHttpRequest();
@@ -335,17 +337,19 @@ function updatePromocion1(){
          /** ////////////////////////////////////////////////////////////////
          * Envio de datos
          */
+         
         let cadena = "id=" + inputId.value +
             "&por_hora=" + numeroUp.value +
-            "&por_compra=" + serialUp.value.trim().toUpperCase() +
+            "&por_compra=" + serialUp.value+
             "&cantidad_objetivo=" + idPl.value;
-        console.log(cadena);
+        //console.log(cadena);
         $.ajax({
             type: "POST",
-            url: "controllers/updatePromocion.php",
+            url: "controllers/updatePromocion1.php",
             data: cadena,
             success: function (r) {
-                loadListConsolas();
+            //    console.log("PRUEBA"+r);
+                loadListPromocion1();
                 iziToast.success({
                     title: 'Bien',
                     message: 'Consola actualizada correctamente'
@@ -359,10 +363,10 @@ function updatePromocion1(){
             }
         });
 
+
 }
 
 function updatePromocion2(){
-
         let inputId = document.getElementById('id');
         let numeroUp = document.getElementById('invitados');
         let serialUp = document.getElementById('monedas');
@@ -372,16 +376,16 @@ function updatePromocion2(){
          * Envio de datos
          */
         let cadena = "id=" + inputId.value +
-            "&por_hora=" + numeroUp.value +
-            "&por_compra=" + serialUp.value.trim().toUpperCase() +
-            "&cantidad_objetivo=" + idPl.value;
-        console.log(cadena);
+            "&invitados=" + numeroUp.value +
+            "&monedas=" + serialUp.value ;
+        //console.log(cadena);
         $.ajax({
             type: "POST",
-            url: "controllers/updatePromocion.php",
+            url: "controllers/updatePromocion2.php",
             data: cadena,
             success: function (r) {
-                loadListConsolas();
+                
+                loadListPromocion1();
                 iziToast.success({
                     title: 'Bien',
                     message: 'Consola actualizada correctamente'
@@ -404,4 +408,7 @@ function cargaDataPromocionModal2Up(data) {
     document.getElementById('invitados').value = dataConsola[1];
     document.getElementById('monedas').value = dataConsola[2];
 }
+
+
+
 
