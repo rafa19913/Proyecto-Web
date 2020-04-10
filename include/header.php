@@ -108,7 +108,7 @@
         </li>
         <!-- Nav Item - Juegos -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="juegos.php">
                 <i class="fas fa-fw fa-gamepad"></i>
                 <span>Juegos</span></a>
         </li>
