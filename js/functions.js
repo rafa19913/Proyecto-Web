@@ -15,6 +15,188 @@ function convertToNumber(str){
     return n;
 }
 
+
+/**
+ * Validaciones para agregar nuevo usuario (admin)
+ */
+document.getElementById('agregarUsuarioBtn').onclick = () => {
+    nombre = document.getElementById('nombreAdd');
+    apellidos = document.getElementById('apellidosAdd');
+    fechaNac = document.getElementById('nacimientoAdd');
+    genero = document.getElementById('generoAdd');
+    telefono = document.getElementById('telefonoAdd');
+    email = document.getElementById('emailAdd');
+    username = document.getElementById('usernameAdd');
+    rol = document.getElementById('rolAdd');
+    monedas = document.getElementById('monedasAdd');
+    password = document.getElementById('passwordAdd');
+    passConfirm = document.getElementById('confirmAdd');
+    imagen = document.getElementById('imagenAdd');
+  
+    fb = document.getElementById('facebookAdd');
+    yt = document.getElementById('youtubeAdd');
+    tw = document.getElementById('twitchAdd');
+
+
+    //Validaciones
+   if (password.value != passConfirm.value){
+       alert ("Las contraseñas no coinciden");
+       return;
+   }
+   
+
+   if(!emptyInput(nombre) || !emptyInput(apellidos) || !emptyInput(email) || !emptyInput(monedas) || !emptyInput(password) || !emptyInput(rol) )
+       return;
+   
+   // console.log(rol.value, nombre.value, apellidos.value, fechaNac.value, genero.value, telefono.value, email.value, monedas, username.value, password.value, imagen.value, fb.value, yt.value, tw.value);
+   monedas = convertToNumber(monedas.value);
+
+   addUsuario(rol.value, nombre.value, apellidos.value, fechaNac.value, genero.value, telefono.value, email.value, monedas, username.value, password.value, imagen.value, fb.value, yt.value, tw.value);
+
+};
+
+/**
+* Se envian los datos a PHP (archivos en controllers/) quien hace las operaciones SQL
+*/
+function addUsuario(rol, nombre, apellidos, fechaNac, genero, telefono, email, monedas, username, password, imagen, fb, yt, tw) {
+   rol = rol.trim();
+   nombre = nombre.trim();
+   apellidos = apellidos.trim();
+   fechaNac = fechaNac.trim();
+   genero = genero.trim();
+   telefono = telefono.trim();
+   email = email.trim();
+   username = username.trim();
+   password = password.trim();
+   imagen.trim();
+   fb.trim();
+   yt.trim();
+   tw.trim();
+
+   // crear cadena de envio de datos
+   cadena = "rol=" + rol +
+       "&nombre=" + nombre +
+       "&apellidos=" + apellidos +
+       "&fechaNac=" + fechaNac +
+       "&genero=" + genero +
+       "&telefono=" + telefono + 
+       "&email=" + email +
+       "&monedas=" + monedas +
+       "&username=" + username +
+       "&password=" + password + 
+       "&imagen=" + imagen +
+       "&fb=" + fb +
+       "&yt=" + yt +
+       "&tw=" + tw;
+
+   $.ajax({
+       type: "POST",
+       url: "controllers/addUsuario.php",
+       data: cadena,
+       success: function (r) {
+           console.log(r);
+           loadListUsuarios();
+           iziToast.success({
+               title: 'Bien',
+               message: 'Usuario agregado correctamente'
+           });
+       },
+       error: function () {
+           iziToast.error({
+               title: 'Error',
+               message: 'Hubo un problema al agregar el usuario'
+           });
+       }
+   });
+}
+
+
+/**
+ * Cargar lista de usuarios desde desde components/listarUsuariosCards.php
+ */
+function loadListUsuarios() {
+    div = document.getElementById('listadoUsuarios');
+    var xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+        div.innerHTML = this.response;
+    };
+
+    xhr.open('GET', 'components/listarUsuariosCards.php', true);
+    xhr.send();
+}
+
+
+/**
+ * Carga los datos del listado usuarios al modal updateUsuario
+ * @param data 
+ */
+function cargaDataUsuariosModalUp(data){
+    let dataUsuario = data.split('||');
+    //REDES SOCIALES
+    // alert(dataUsuario[12]);
+    // alert(dataUsuario[13]);
+    // alert(dataUsuario[14]);
+    tipo = dataUsuario[1]; // Rol (1=Admin 2=Gamer)
+    cargarTipoDeUsuario(tipo);
+    cargarDatosDelUsuario(dataUsuario);
+    cargarRedesSociales(dataUsuario);
+}
+
+function cargarRedesSociales(dataUsuario){
+    //Facebook
+    if (dataUsuario[12] != null){
+        document.getElementById('facebookAddUp').value = dataUsuario[12]; 
+    }else{
+        document.getElementById('facebookAddUp').value = ""
+    }
+    //YouTube
+    if (dataUsuario[13] != null){
+        document.getElementById('youtubeAddUp').value = dataUsuario[13]; 
+    }else{
+        document.getElementById('youtubeAddUp').value = ""
+    }
+    //Twitch
+    if (dataUsuario[14] != null){
+        document.getElementById('twitchAddUp').value = dataUsuario[14]; 
+    }else{
+        document.getElementById('twitchAddUp').value = ""
+    }
+    
+}
+
+/**
+ * Se cargan los datos básicos del usaurio (nombre, apellido, username...)
+ * @param {*} dataUsuario (datos del usuario)
+ */
+function cargarDatosDelUsuario(dataUsuario){
+    document.getElementById('nombreAddUp').value = dataUsuario[2]; 
+    document.getElementById('apellidosAddUp').value = dataUsuario[3];
+    document.getElementById('nacimientoAddUp').value = dataUsuario[4];  
+    document.getElementById('generoAddUp').value = dataUsuario[5]; 
+    document.getElementById('telefonoAddUp').value = dataUsuario[6]; 
+    document.getElementById('emailAddUp').value = dataUsuario[7]; 
+    document.getElementById('monedasAddUp').value = dataUsuario[8]; 
+    document.getElementById('usernameAddUp').value = dataUsuario[9]; 
+    document.getElementById('passwordAddUp').value = dataUsuario[10]; 
+    document.getElementById('confirmAddUp').value = dataUsuario[10]; 
+}
+
+/**
+ * Se carga si es admin o gamer (1=admin 2=gamer)
+ * @param {1 o 2} numero 
+ */
+function cargarTipoDeUsuario(numero){
+    if (numero == 1){
+        document.getElementById('rolAddUp').value = "Administrador"; 
+    }else{
+        document.getElementById('rolAddUp').value = "Gamer";
+    }
+}
+
+
+
+
 /**
  * falso si es nulo o vacio.
  */
