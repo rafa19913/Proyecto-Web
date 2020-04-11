@@ -10,13 +10,8 @@
 
     $type_image = $_POST['type'];
     $archivo = $_POST['tmp_name'];
-    $desc = $_POST['descrpcion'];
+    $desc = $_POST['descripcion'];
     $plataformas = $_POST['plataformas'];
-
-    $sql = "SELECT * FROM juegos;";
-    $resultado = mysqli_query($connection, $sql);
-    $row_cnt = mysqli_num_rows($resultado);
-
 
     $formato = ".";
     $banderaPunto = false;
@@ -29,7 +24,7 @@
         }
     }
 
-    $ruta = "../../images/juegos/".strtolower(str_replace(' ', '_', $titulo))."_".$row_cnt.$formato;
+    $ruta = "../../images/juegos/".strtolower(str_replace(' ', '_', $titulo))."_".time().$formato;
 
     $archivo = str_replace('data:'.$type_image.';base64,', '', $archivo);
     $archivo = str_replace(' ', '+', $archivo);

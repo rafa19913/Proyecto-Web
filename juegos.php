@@ -40,10 +40,11 @@
   </a>
 
 
-  <?php
-# modals
-require 'include/modals/juegos/addJuego.php';
-require 'include/modals/juegos/editJuego.php';;
+<?php
+  # modals
+  require 'include/modals/juegos/addJuego.php';
+  require 'include/modals/juegos/editJuego.php';
+  require 'include/modals/juegos/deleteJuego.php';
 ?>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/izitoast/iziToast.min.js" type="text/javascript"></script>
@@ -54,7 +55,7 @@ require 'include/modals/juegos/editJuego.php';;
         }, false);
     </script>
 
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
       let contenedor;
     </script>
 <?php

@@ -60,12 +60,20 @@
         
     <!-- Content Row -->
     <div class="row">
-
-
         <?php      
             while($mostrar=mysqli_fetch_array($resultado)){
+                $data = $mostrar[0]."||".$mostrar[1]."||".$mostrar[2]."||".$mostrar[3];
+
+                $sql2 = "SELECT p.id, p.nombre FROM juegos j JOIN platdisponibles pr ON j.id = pr.id_juego JOIN plataformas p ON p.id = pr.id_plataforma WHERE j.id=".$mostrar['id']; 
+                $plataformas = mysqli_query($connection, $sql2);
+                $todasPlataformas = "| ";
+                $data2 = "";
+                $id_plataforma = 0;
+                while($mostrar2=mysqli_fetch_array($plataformas)){
+                    $todasPlataformas = $todasPlataformas.$mostrar2['nombre']." | ";
+                    $data2 = $data2.$mostrar2[0]."||";
+                }
         ?>
-        <!-- Area Chart -->
         <!-- Area Chart -->
         <div class="col-xl-3 col-lg-7">
             <div class="card shadow mb-4">
@@ -78,7 +86,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" id="contOpciones">
                             <div class="dropdown-header">Opciones:</div>
-                            <a class="dropdown-item" data-toggle="modal"  data-target="#editarJuego" onclick="editarJuego('<?php echo $mostrar['id'];?>')">Editar</a>
+                            <a class="dropdown-item" data-toggle="modal"  data-target="#editarJuego" onclick="editarJuego('<?php echo $data;?>', '<?php echo $data2;?>')">Editar</a>
                             <a class="dropdown-item" data-toggle="modal"  data-target="#borrarJuego" onclick="eliminarJuego('<?php echo $mostrar['id'];?>')">Eliminar</a>
                             </div>
                         </div>
@@ -90,15 +98,7 @@
                         <div class="dropdown-divider"></div>
                             <!-- Obtener todo las plataformas que existen -->
                             <p><strong>Plataformas:</strong></p>
-                            <?php 
-                                $sql2 = "SELECT p.nombre FROM juegos j JOIN platdisponibles pr ON j.id = pr.id_juego JOIN plataformas p ON p.id = pr.id_plataforma WHERE j.id=".$mostrar['id']; 
-                                $plataformas = mysqli_query($connection, $sql2);
-                                $todasPlataformas = "| ";
-                                while($mostrar2=mysqli_fetch_array($plataformas)){
-                                    $todasPlataformas = $todasPlataformas.$mostrar2['nombre']." | ";
-                                }
-                            ?>
-                            <p><?php echo $todasPlataformas?></p>
+                            <p id='idPlats'><?php echo $todasPlataformas?></p>
                     </div>
                 </div>
             </div>
