@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 }
 
 # Preparar el SQL, evitando ataques de inyeccion.
-if ($stmt = $connection->prepare('SELECT id, password FROM usuarios WHERE email = ?')) {
+if ($stmt = $connection->prepare('SELECT id, tipo, password FROM usuarios WHERE email = ?')) {
     # vincular parametros; en este caso es string (s).
     $stmt->bind_param('s', $_POST['email']);
     $stmt->execute();
@@ -22,7 +22,7 @@ if ($stmt = $connection->prepare('SELECT id, password FROM usuarios WHERE email 
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password);
+        $stmt->bind_result($id, $tipo, $password);
         $stmt->fetch();
         # La cuenta existe, ahora se validara el password
         if (password_verify($_POST['password'], $password)) { # verificar password encriptada
@@ -31,12 +31,14 @@ if ($stmt = $connection->prepare('SELECT id, password FROM usuarios WHERE email 
             session_regenerate_id();
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['id'] = $id;
-            if($id == 1) {
+            $_SESSION['tipo'] = $tipo;
+            if($tipo == 1) {
                 header('Location: ../index.php');
                 exit;
-            }if($id == 2) {
+            }if($tipo == 2) {
                 header('Location: ../indexGamer.php');
             }
+
         } else {
             header('Location: ../login.php');
             exit;

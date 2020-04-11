@@ -4,11 +4,11 @@
         session_unset();
         session_destroy();
     }
-    if(!isset($_SESSION['id'])){ # si no hay una sesion
+    if(!isset($_SESSION['id']) && !isset($_SESSION['tipo'])){ # si no hay una sesion
         header('Location: login.php');
     }
-    if(isset($_SESSION['id'])){
-        if($_SESSION['id'] == 2){ # si es un user gamer
+    if(isset($_SESSION['tipo'])){
+        if($_SESSION['tipo'] == 2){ # si es un user gamer
             header('Location: indexGamer.php');
         }
     }
@@ -37,7 +37,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/izitoast/iziToast.min.css">
-
+    <link rel="stylesheet" href="css/instalarJuegos.css">
 </head>
 
 <body id="page-top">
@@ -102,7 +102,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <!--<h6 class="collapse-header">Custom Components:</h6>-->
                     <a class="collapse-item" href="consolas.php">Listar</a>
-                    <a class="collapse-item" href="#">Instalar juego</a>
+                    <a class="collapse-item" href="instalarJuegos.php">Instalar juego</a>
                 </div>
             </div>
         </li>

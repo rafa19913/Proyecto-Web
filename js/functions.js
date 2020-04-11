@@ -239,7 +239,6 @@ function updateConsola(){
                 });
             }
         });
-<<<<<<< HEAD
 }
 
 /**
@@ -339,9 +338,6 @@ function cargarJuegosConsola(id) {
         }
     });
 
-
-=======
->>>>>>> b90af581092a15cb87b3c82861cc4b787c4c1283
 }
 
 
@@ -372,6 +368,40 @@ function desinstalarJuego(idConsola, idJuego) {
             });
         }
     });
+}
+
+/**
+ * Cargar lista de todos los juegos para instalar
+ */
+function cargarJuegosInstalarConsolas() {
+   div = document.getElementById('divListarJuegosInstalar');
+   var xhr = new XMLHttpRequest();
+
+   xhr.onload = function () {
+        div.innerHTML = this.response;
+   };
+   xhr.open('GET', 'components/listarJuegosInstalar.php', true);
+   xhr.send();
+
+}
+
+/**
+ * En base al idJuego listara consolas disponibles para instalar,
+ * no compatibles y donde esta instalado.
+ */
+function listarConsolasDisponiblesInstalarJuego(idJuego){
+    console.log(idJuego);
+    div = document.getElementById('divContentTableConolas');
+    inpId = document.getElementById('consolasJuegoInstalar');
+    inpId.value = idJuego;
+    /*var xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+        div.innerHTML = this.response;
+    };
+    xhr.open('GET', 'components/listarConsolasInstalar.php', true);
+    xhr.send();
+*/
 }
 
 
